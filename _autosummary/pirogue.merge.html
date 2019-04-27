@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pirogue.merge &mdash; pirogue 0.5 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pirogue.join" href="pirogue.join.html" />
+    <link rel="prev" title="Welcome to pirogue’s documentation!" href="../index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> pirogue
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pirogue.merge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pirogue.join.html">pirogue.join</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pirogue.information_schema.html">pirogue.information_schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pirogue.utils.html">pirogue.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pirogue</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>pirogue.merge</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/_autosummary/pirogue.merge.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pirogue.merge">
+<span id="pirogue-merge"></span><h1>pirogue.merge<a class="headerlink" href="#module-pirogue.merge" title="Permalink to this headline">¶</a></h1>
+<p class="rubric">Classes</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#pirogue.merge.Merge" title="pirogue.merge.Merge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Merge</span></code></a>(definition,&nbsp;pg_service,&nbsp;variables,&nbsp;…)</td>
+<td>Creates a merge view with associated triggers to edit.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Exceptions</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#pirogue.merge.InvalidDefinition" title="pirogue.merge.InvalidDefinition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InvalidDefinition</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#pirogue.merge.ReferencedTableDefinedBeforeReferencing" title="pirogue.merge.ReferencedTableDefinedBeforeReferencing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReferencedTableDefinedBeforeReferencing</span></code></a></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#pirogue.merge.VariableError" title="pirogue.merge.VariableError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VariableError</span></code></a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="exception">
+<dt id="pirogue.merge.InvalidDefinition">
+<em class="property">exception </em><code class="descclassname">pirogue.merge.</code><code class="descname">InvalidDefinition</code><a class="reference internal" href="../_modules/pirogue/merge.html#InvalidDefinition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.merge.InvalidDefinition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pirogue.merge.Merge">
+<em class="property">class </em><code class="descclassname">pirogue.merge.</code><code class="descname">Merge</code><span class="sig-paren">(</span><em>definition: dict</em>, <em>pg_service: str = None</em>, <em>variables: dict = {}</em>, <em>create_joins: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/merge.html#Merge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.merge.Merge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Creates a merge view with associated triggers to edit.</p>
+<p>Produces the SQL code of the join table and triggers</p>
+<dl class="docutils">
+<dt>definition</dt>
+<dd>the YAML definition of the merge view</dd>
+<dt>pg_service</dt>
+<dd>if not given, it is determined using environment variable PGSERVICE</dd>
+<dt>variables</dt>
+<dd>dictionary for variables to be used in SQL deltas ( name =&gt; value )</dd>
+<dt>create_joins</dt>
+<dd>if True, simple joins will be created for all joined tables</dd>
+</dl>
+<dl class="method">
+<dt id="pirogue.merge.Merge.create">
+<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/pirogue/merge.html#Merge.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.merge.Merge.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the merge view on the specified service
+Returns True in case of success</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="pirogue.merge.ReferencedTableDefinedBeforeReferencing">
+<em class="property">exception </em><code class="descclassname">pirogue.merge.</code><code class="descname">ReferencedTableDefinedBeforeReferencing</code><a class="reference internal" href="../_modules/pirogue/merge.html#ReferencedTableDefinedBeforeReferencing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.merge.ReferencedTableDefinedBeforeReferencing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="pirogue.merge.VariableError">
+<em class="property">exception </em><code class="descclassname">pirogue.merge.</code><code class="descname">VariableError</code><a class="reference internal" href="../_modules/pirogue/merge.html#VariableError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.merge.VariableError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pirogue.join.html" class="btn btn-neutral float-right" title="pirogue.join" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="Welcome to pirogue’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Denis Rouzaud
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-info-circle"> pirogue </span>
+    v: 
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Versions</dt>
+      
+    </dl>
+    
+  </div>
+</div>
+  
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

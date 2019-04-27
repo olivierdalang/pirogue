@@ -1,0 +1,30 @@
+pirogue.merge
+=============
+
+.. automodule:: pirogue.merge
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Merge
+   
+   
+
+   
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      InvalidDefinition
+      ReferencedTableDefinedBeforeReferencing
+      VariableError
+   
+   

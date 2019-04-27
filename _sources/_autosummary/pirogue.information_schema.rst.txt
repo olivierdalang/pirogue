@@ -1,0 +1,34 @@
+pirogue.information\_schema
+===========================
+
+.. automodule:: pirogue.information_schema
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      columns
+      default_value
+      geometry_type
+      primary_key
+      reference_columns
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      InvalidSkipColumns
+      NoReferenceFound
+      TableHasNoPrimaryKey
+   
+   

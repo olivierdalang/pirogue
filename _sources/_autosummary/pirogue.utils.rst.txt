@@ -1,0 +1,31 @@
+pirogue.utils
+=============
+
+.. automodule:: pirogue.utils
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      insert_command
+      select_columns
+      table_parts
+      update_command
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      InvalidColumn
+   
+   

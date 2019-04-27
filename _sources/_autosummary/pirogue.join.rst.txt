@@ -1,0 +1,22 @@
+pirogue.join
+============
+
+.. automodule:: pirogue.join
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Join
+   
+   
+
+   
+   
+   
