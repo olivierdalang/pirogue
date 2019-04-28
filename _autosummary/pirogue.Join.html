@@ -157,19 +157,6 @@
 <em class="property">class </em><code class="descclassname">pirogue.</code><code class="descname">Join</code><span class="sig-paren">(</span><em>parent_table: str</em>, <em>child_table: str</em>, <em>pg_service: str = None</em>, <em>view_schema: str = None</em>, <em>view_name: str = None</em>, <em>pkey_default_value: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/join.html#Join"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.Join" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Creates a simple join view with associated triggers to edit.</p>
-<p>Produces the SQL code of the join table and triggers</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pg_service</strong> – if not given, it is determined using environment variable PGSERVICE</p></li>
-<li><p><strong>parent_table</strong> – the parent table, can be schema specified</p></li>
-<li><p><strong>child_table</strong> – the child table, can be schema specified</p></li>
-<li><p><strong>view_schema</strong> – the schema where the view will written to</p></li>
-<li><p><strong>view_name</strong> – the name of the created view, defaults to vw_{parent_table}_{join_table}</p></li>
-<li><p><strong>pkey_default_value</strong> – the primary key column of the view will have a default value according to the child primary key table</p></li>
-</ul>
-</dd>
-</dl>
 <dl class="method">
 <dt id="pirogue.Join.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>parent_table: str</em>, <em>child_table: str</em>, <em>pg_service: str = None</em>, <em>view_schema: str = None</em>, <em>view_name: str = None</em>, <em>pkey_default_value: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/join.html#Join.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.Join.__init__" title="Permalink to this definition">¶</a></dt>

@@ -157,17 +157,6 @@
 <em class="property">class </em><code class="descclassname">pirogue.</code><code class="descname">Merge</code><span class="sig-paren">(</span><em>definition: dict</em>, <em>pg_service: str = None</em>, <em>variables: dict = {}</em>, <em>create_joins: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/merge.html#Merge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.Merge" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Creates a merge view with associated triggers to edit.</p>
-<p>Produces the SQL code of the join table and triggers</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>definition</strong> – the YAML definition of the merge view</p></li>
-<li><p><strong>pg_service</strong> – if not given, it is determined using environment variable PGSERVICE</p></li>
-<li><p><strong>variables</strong> – dictionary for variables to be used in SQL deltas ( name =&gt; value )</p></li>
-<li><p><strong>create_joins</strong> – if True, simple joins will be created for all joined tables</p></li>
-</ul>
-</dd>
-</dl>
 <dl class="method">
 <dt id="pirogue.Merge.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>definition: dict</em>, <em>pg_service: str = None</em>, <em>variables: dict = {}</em>, <em>create_joins: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/merge.html#Merge.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.Merge.__init__" title="Permalink to this definition">¶</a></dt>
