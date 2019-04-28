@@ -1,0 +1,23 @@
+pirogue.Join
+============
+
+.. currentmodule:: pirogue
+
+.. autoclass:: Join
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Join.__init__
+      ~Join.create
+   
+   
+
+   
+   
+   

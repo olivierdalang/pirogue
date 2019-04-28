@@ -79,10 +79,11 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.merge.html">pirogue.merge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.join.html">pirogue.join</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.Merge.html">pirogue.Merge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.Join.html">pirogue.Join</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.information_schema.html">pirogue.information_schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.utils.html">pirogue.utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.exceptions.html">pirogue.exceptions</a></li>
 </ul>
 
             
@@ -157,24 +158,33 @@
 <span class="kn">from</span> <span class="nn">pirogue.exceptions</span> <span class="k">import</span> <span class="n">TableHasNoPrimaryKey</span>
 
 
-<div class="viewcode-block" id="Join"><a class="viewcode-back" href="../../_autosummary/pirogue.join.html#pirogue.join.Join">[docs]</a><span class="k">class</span> <span class="nc">Join</span><span class="p">:</span>
+<div class="viewcode-block" id="Join"><a class="viewcode-back" href="../../_autosummary/pirogue.Join.html#pirogue.Join">[docs]</a><span class="k">class</span> <span class="nc">Join</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a simple join view with associated triggers to edit.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">child_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<div class="viewcode-block" id="Join.__init__"><a class="viewcode-back" href="../../_autosummary/pirogue.Join.html#pirogue.Join.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">child_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
                  <span class="n">pg_service</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">view_schema</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">view_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">pkey_default_value</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Produces the SQL code of the join table and triggers</span>
-<span class="sd">        :param pg_service:</span>
-<span class="sd">        :param parent_table:</span>
-<span class="sd">        :param child_table:</span>
-<span class="sd">        :param view_schema: the schema where the view will written to</span>
-<span class="sd">        :param view_name: the name of the created view, defaults to vw_{parent_table}_{join_table}</span>
-<span class="sd">        :param : The primary key column of the view will have a default value according to the child primary key table</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        pg_service</span>
+<span class="sd">            if not given, it is determined using environment variable PGSERVICE</span>
+<span class="sd">        parent_table</span>
+<span class="sd">            the parent table, can be schema specified</span>
+<span class="sd">        child_table</span>
+<span class="sd">            the child table, can be schema specified</span>
+<span class="sd">        view_schema</span>
+<span class="sd">            the schema where the view will written to</span>
+<span class="sd">        view_name</span>
+<span class="sd">            the name of the created view, defaults to vw_{parent_table}_{join_table}</span>
+<span class="sd">        pkey_default_value</span>
+<span class="sd">            the primary key column of the view will have a default value according to the child primary key table</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">pg_service</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -206,13 +216,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">child_pkey</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ref_parent_key</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parent_pkey</span> <span class="o">=</span> <span class="n">primary_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent_schema</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent_table</span><span class="p">)</span>
 
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent_pkey</span> <span class="o">==</span> <span class="n">parent_referenced_key</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent_pkey</span> <span class="o">==</span> <span class="n">parent_referenced_key</span></div>
 
-<div class="viewcode-block" id="Join.create"><a class="viewcode-back" href="../../_autosummary/pirogue.join.html#pirogue.join.Join.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="Join.create"><a class="viewcode-back" href="../../_autosummary/pirogue.Join.html#pirogue.Join.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        :return:</span>
+<span class="sd">        Creates the merge view on the specified service</span>
+<span class="sd">        Returns True in case of success</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="k">for</span> <span class="n">sql</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__view</span><span class="p">(),</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">__insert_trigger</span><span class="p">(),</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">__update_trigger</span><span class="p">(),</span>

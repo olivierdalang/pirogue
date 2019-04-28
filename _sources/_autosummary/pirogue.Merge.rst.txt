@@ -1,0 +1,23 @@
+pirogue.Merge
+=============
+
+.. currentmodule:: pirogue
+
+.. autoclass:: Merge
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Merge.__init__
+      ~Merge.create
+   
+   
+
+   
+   
+   

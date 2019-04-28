@@ -1,0 +1,27 @@
+pirogue.exceptions
+==================
+
+.. automodule:: pirogue.exceptions
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      InvalidColumn
+      InvalidDefinition
+      InvalidSkipColumns
+      NoReferenceFound
+      TableHasNoPrimaryKey
+      VariableError
+   
+   
