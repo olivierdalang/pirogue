@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pirogue.merge &mdash; pirogue 0.5 documentation</title>
+  <title>pirogue.merge &mdash; pirogue  documentation</title>
   
 
   
@@ -17,34 +17,36 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pirogue.join" href="pirogue.join.html" />
     <link rel="prev" title="Welcome to pirogue’s documentation!" href="../index.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -54,6 +56,9 @@
           
           </a>
 
+          
+            
+            
           
 
           
@@ -147,56 +152,32 @@
   <div class="section" id="module-pirogue.merge">
 <span id="pirogue-merge"></span><h1>pirogue.merge<a class="headerlink" href="#module-pirogue.merge" title="Permalink to this headline">¶</a></h1>
 <p class="rubric">Classes</p>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-center">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#pirogue.merge.Merge" title="pirogue.merge.Merge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Merge</span></code></a>(definition,&nbsp;pg_service,&nbsp;variables,&nbsp;…)</td>
-<td>Creates a merge view with associated triggers to edit.</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pirogue.merge.Merge" title="pirogue.merge.Merge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Merge</span></code></a>(definition, pg_service, variables, …)</p></td>
+<td><p>Creates a merge view with associated triggers to edit.</p></td>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Exceptions</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#pirogue.merge.InvalidDefinition" title="pirogue.merge.InvalidDefinition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InvalidDefinition</span></code></a></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#pirogue.merge.ReferencedTableDefinedBeforeReferencing" title="pirogue.merge.ReferencedTableDefinedBeforeReferencing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReferencedTableDefinedBeforeReferencing</span></code></a></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pirogue.merge.VariableError" title="pirogue.merge.VariableError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VariableError</span></code></a></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<dl class="exception">
-<dt id="pirogue.merge.InvalidDefinition">
-<em class="property">exception </em><code class="descclassname">pirogue.merge.</code><code class="descname">InvalidDefinition</code><a class="reference internal" href="../_modules/pirogue/merge.html#InvalidDefinition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.merge.InvalidDefinition" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-</dd></dl>
-
 <dl class="class">
 <dt id="pirogue.merge.Merge">
 <em class="property">class </em><code class="descclassname">pirogue.merge.</code><code class="descname">Merge</code><span class="sig-paren">(</span><em>definition: dict</em>, <em>pg_service: str = None</em>, <em>variables: dict = {}</em>, <em>create_joins: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/merge.html#Merge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.merge.Merge" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Creates a merge view with associated triggers to edit.</p>
 <p>Produces the SQL code of the join table and triggers</p>
-<dl class="docutils">
-<dt>definition</dt>
-<dd>the YAML definition of the merge view</dd>
-<dt>pg_service</dt>
-<dd>if not given, it is determined using environment variable PGSERVICE</dd>
-<dt>variables</dt>
-<dd>dictionary for variables to be used in SQL deltas ( name =&gt; value )</dd>
-<dt>create_joins</dt>
-<dd>if True, simple joins will be created for all joined tables</dd>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>definition</strong> – the YAML definition of the merge view</p></li>
+<li><p><strong>pg_service</strong> – if not given, it is determined using environment variable PGSERVICE</p></li>
+<li><p><strong>variables</strong> – dictionary for variables to be used in SQL deltas ( name =&gt; value )</p></li>
+<li><p><strong>create_joins</strong> – if True, simple joins will be created for all joined tables</p></li>
+</ul>
+</dd>
 </dl>
 <dl class="method">
 <dt id="pirogue.merge.Merge.create">
@@ -205,18 +186,6 @@
 Returns True in case of success</p>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="exception">
-<dt id="pirogue.merge.ReferencedTableDefinedBeforeReferencing">
-<em class="property">exception </em><code class="descclassname">pirogue.merge.</code><code class="descname">ReferencedTableDefinedBeforeReferencing</code><a class="reference internal" href="../_modules/pirogue/merge.html#ReferencedTableDefinedBeforeReferencing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.merge.ReferencedTableDefinedBeforeReferencing" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-</dd></dl>
-
-<dl class="exception">
-<dt id="pirogue.merge.VariableError">
-<em class="property">exception </em><code class="descclassname">pirogue.merge.</code><code class="descname">VariableError</code><a class="reference internal" href="../_modules/pirogue/merge.html#VariableError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.merge.VariableError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 </div>
@@ -232,7 +201,7 @@ Returns True in case of success</p>
         <a href="pirogue.join.html" class="btn btn-neutral float-right" title="pirogue.join" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../index.html" class="btn btn-neutral" title="Welcome to pirogue’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to pirogue’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -256,43 +225,18 @@ Returns True in case of success</p>
 
   </div>
   
-    
-<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-info-circle"> pirogue </span>
-    v: 
-    <span class="fa fa-caret-down"></span>
-  </span>
-  <div class="rst-other-versions">
-    <dl>
-      <dt>Versions</dt>
-      
-    </dl>
-    
-  </div>
-</div>
-  
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

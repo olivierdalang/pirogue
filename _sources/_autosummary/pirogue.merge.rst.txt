@@ -19,12 +19,4 @@ pirogue.merge
 
    
    
-   .. rubric:: Exceptions
-
-   .. autosummary::
-   
-      InvalidDefinition
-      ReferencedTableDefinedBeforeReferencing
-      VariableError
-   
    

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pirogue.utils &mdash; pirogue 0.5 documentation</title>
+  <title>pirogue.utils &mdash; pirogue  documentation</title>
   
 
   
@@ -17,32 +17,34 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -52,6 +54,9 @@
           
           </a>
 
+          
+            
+            
           
 
           
@@ -142,13 +147,10 @@
             
   <h1>Source code for pirogue.utils</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-
 <span class="kn">from</span> <span class="nn">psycopg2.extensions</span> <span class="k">import</span> <span class="n">cursor</span>
+
+<span class="kn">from</span> <span class="nn">pirogue.exceptions</span> <span class="k">import</span> <span class="n">InvalidColumn</span>
 <span class="kn">from</span> <span class="nn">pirogue.information_schema</span> <span class="k">import</span> <span class="n">columns</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">,</span> <span class="n">default_value</span>
-
-
-<div class="viewcode-block" id="InvalidColumn"><a class="viewcode-back" href="../../_autosummary/pirogue.utils.html#pirogue.utils.InvalidColumn">[docs]</a><span class="k">class</span> <span class="nc">InvalidColumn</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="k">pass</span></div>
 
 
 <div class="viewcode-block" id="table_parts"><a class="viewcode-back" href="../../_autosummary/pirogue.utils.html#pirogue.utils.table_parts">[docs]</a><span class="k">def</span> <span class="nf">table_parts</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -517,43 +519,18 @@
 
   </div>
   
-    
-<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-info-circle"> pirogue </span>
-    v: 
-    <span class="fa fa-caret-down"></span>
-  </span>
-  <div class="rst-other-versions">
-    <dl>
-      <dt>Versions</dt>
-      
-    </dl>
-    
-  </div>
-</div>
-  
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

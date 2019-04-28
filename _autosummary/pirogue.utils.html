@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pirogue.utils &mdash; pirogue 0.5 documentation</title>
+  <title>pirogue.utils &mdash; pirogue  documentation</title>
   
 
   
@@ -17,33 +17,35 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="pirogue.information_schema" href="pirogue.information_schema.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -53,6 +55,9 @@
           
           </a>
 
+          
+            
+            
           
 
           
@@ -146,123 +151,87 @@
   <div class="section" id="module-pirogue.utils">
 <span id="pirogue-utils"></span><h1>pirogue.utils<a class="headerlink" href="#module-pirogue.utils" title="Permalink to this headline">¶</a></h1>
 <p class="rubric">Functions</p>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-center">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#pirogue.utils.insert_command" title="pirogue.utils.insert_command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">insert_command</span></code></a>(pg_cur,&nbsp;table_schema,&nbsp;…)</td>
-<td><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">param pg_cur:</th><td class="field-body">the psycopg cursor</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pirogue.utils.insert_command" title="pirogue.utils.insert_command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">insert_command</span></code></a>(pg_cur, table_schema, …)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param pg_cur</dt>
+<dd class="field-odd"><p>the psycopg cursor</p>
+</dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pirogue.utils.select_columns" title="pirogue.utils.select_columns"><code class="xref py py-obj docutils literal notranslate"><span class="pre">select_columns</span></code></a>(pg_cur, table_schema, …)</p></td>
+<td><p>Returns the list of columns to be used in a SELECT command</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pirogue.utils.table_parts" title="pirogue.utils.table_parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">table_parts</span></code></a>(name)</p></td>
+<td><p>Returns a tuple with schema and table names</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pirogue.utils.update_command" title="pirogue.utils.update_command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_command</span></code></a>(pg_cur, table_schema, …)</p></td>
+<td><p>Creates an UPDATE command :param pg_cur: the psycopg cursor :param table_schema: the schema :param table_name: the name of the table :param table_type: the type of table, i.e.</p></td>
 </tr>
 </tbody>
 </table>
-</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#pirogue.utils.select_columns" title="pirogue.utils.select_columns"><code class="xref py py-obj docutils literal notranslate"><span class="pre">select_columns</span></code></a>(pg_cur,&nbsp;table_schema,&nbsp;…)</td>
-<td>Returns the list of columns to be used in a SELECT command</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pirogue.utils.table_parts" title="pirogue.utils.table_parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">table_parts</span></code></a>(name)</td>
-<td>Returns a tuple with schema and table names</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#pirogue.utils.update_command" title="pirogue.utils.update_command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_command</span></code></a>(pg_cur,&nbsp;table_schema,&nbsp;…)</td>
-<td>Creates an UPDATE command :param pg_cur: the psycopg cursor :param table_schema: the schema :param table_name: the name of the table :param table_type: the type of table, i.e.</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Exceptions</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#pirogue.utils.InvalidColumn" title="pirogue.utils.InvalidColumn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InvalidColumn</span></code></a></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<dl class="exception">
-<dt id="pirogue.utils.InvalidColumn">
-<em class="property">exception </em><code class="descclassname">pirogue.utils.</code><code class="descname">InvalidColumn</code><a class="reference internal" href="../_modules/pirogue/utils.html#InvalidColumn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.utils.InvalidColumn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-</dd></dl>
-
 <dl class="function">
 <dt id="pirogue.utils.insert_command">
 <code class="descclassname">pirogue.utils.</code><code class="descname">insert_command</code><span class="sig-paren">(</span><em>pg_cur: psycopg2.extensions.cursor</em>, <em>table_schema: str</em>, <em>table_name: str</em>, <em>table_type: str = 'table'</em>, <em>table_alias: str = None</em>, <em>remove_pkey: bool = True</em>, <em>pkey: str = None</em>, <em>coalesce_pkey_default: bool = False</em>, <em>skip_columns: list = []</em>, <em>comment_skipped: bool = True</em>, <em>remap_columns: dict = {}</em>, <em>insert_values: dict = {}</em>, <em>columns_on_top: list = []</em>, <em>columns_at_end: list = []</em>, <em>prefix: str = None</em>, <em>returning: str = None</em>, <em>indent: int = 2</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/pirogue/utils.html#insert_command"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.utils.insert_command" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>pg_cur</strong> – the psycopg cursor</li>
-<li><strong>table_schema</strong> – the schema</li>
-<li><strong>table_name</strong> – the name of the table</li>
-<li><strong>table_type</strong> – the type of table, i.e. view or table</li>
-<li><strong>table_alias</strong> – the alias of the table</li>
-<li><strong>remove_pkey</strong> – if True, the primary is removed from the list</li>
-<li><strong>pkey</strong> – can be manually specified.</li>
-<li><strong>coalesce_pkey_default</strong> – if True, the following expression is used to insert the primary key: COALESCE( NEW.{pkey}, {default_value} )</li>
-<li><strong>skip_columns</strong> – list of columns to be skipped</li>
-<li><strong>comment_skipped</strong> – if True, skipped columns are written but commented, otherwise they are not written</li>
-<li><strong>remap_columns</strong> – dictionary to remap columns</li>
-<li><strong>insert_values</strong> – dictionary of expression to be used at insert</li>
-<li><strong>columns_on_top</strong> – bring the columns to the front of the list</li>
-<li><strong>columns_at_end</strong> – bring the columns to the end of the list</li>
-<li><strong>prefix</strong> – add a prefix to the columns (do not applied to remapped columns)</li>
-<li><strong>returning</strong> – returning command</li>
-<li><strong>indent</strong> – add an indent in front</li>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pg_cur</strong> – the psycopg cursor</p></li>
+<li><p><strong>table_schema</strong> – the schema</p></li>
+<li><p><strong>table_name</strong> – the name of the table</p></li>
+<li><p><strong>table_type</strong> – the type of table, i.e. view or table</p></li>
+<li><p><strong>table_alias</strong> – the alias of the table</p></li>
+<li><p><strong>remove_pkey</strong> – if True, the primary is removed from the list</p></li>
+<li><p><strong>pkey</strong> – can be manually specified.</p></li>
+<li><p><strong>coalesce_pkey_default</strong> – if True, the following expression is used to insert the primary key: COALESCE( NEW.{pkey}, {default_value} )</p></li>
+<li><p><strong>skip_columns</strong> – list of columns to be skipped</p></li>
+<li><p><strong>comment_skipped</strong> – if True, skipped columns are written but commented, otherwise they are not written</p></li>
+<li><p><strong>remap_columns</strong> – dictionary to remap columns</p></li>
+<li><p><strong>insert_values</strong> – dictionary of expression to be used at insert</p></li>
+<li><p><strong>columns_on_top</strong> – bring the columns to the front of the list</p></li>
+<li><p><strong>columns_at_end</strong> – bring the columns to the end of the list</p></li>
+<li><p><strong>prefix</strong> – add a prefix to the columns (do not applied to remapped columns)</p></li>
+<li><p><strong>returning</strong> – returning command</p></li>
+<li><p><strong>indent</strong> – add an indent in front</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="pirogue.utils.select_columns">
 <code class="descclassname">pirogue.utils.</code><code class="descname">select_columns</code><span class="sig-paren">(</span><em>pg_cur: psycopg2.extensions.cursor</em>, <em>table_schema: str</em>, <em>table_name: str</em>, <em>table_type: str = 'table'</em>, <em>table_alias: str = None</em>, <em>remove_pkey: bool = False</em>, <em>skip_columns: list = []</em>, <em>safe_skip_columns: list = []</em>, <em>columns_list: list = None</em>, <em>comment_skipped: bool = True</em>, <em>remap_columns: dict = {}</em>, <em>columns_on_top: list = []</em>, <em>columns_at_end: list = []</em>, <em>prefix: str = None</em>, <em>indent: int = 2</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/pirogue/utils.html#select_columns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.utils.select_columns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the list of columns to be used in a SELECT command</p>
-<dl class="docutils">
-<dt>pg_cur</dt>
-<dd>the psycopg cursor</dd>
-<dt>table_schema</dt>
-<dd>the schema</dd>
-<dt>table_name</dt>
-<dd>the name of the table</dd>
-<dt>table_type</dt>
-<dd>the type of table, i.e. view or table</dd>
-<dt>table_alias</dt>
-<dd>if not specified, table is used</dd>
-<dt>remove_pkey</dt>
-<dd>if True, the primary is removed from the list</dd>
-<dt>skip_columns</dt>
-<dd>list of columns to be skipped, raise an exception if the column does not exist</dd>
-<dt>safe_skip_columns</dt>
-<dd>list of columns to be skipped, do not raise exception if column does not exist</dd>
-<dt>columns_list</dt>
-<dd>if given use as list of columns</dd>
-<dt>comment_skipped</dt>
-<dd>if True, skipped columns are written but commented, otherwise they are not written
-If remove_pkey is True, the primary key will not be printed</dd>
-<dt>remap_columns</dt>
-<dd>dictionary to remap columns</dd>
-<dt>columns_on_top</dt>
-<dd>bring the columns to the front of the list</dd>
-<dt>columns_at_end</dt>
-<dd>bring the columns to the end of the list</dd>
-<dt>prefix</dt>
-<dd>add a prefix to the columns (do not applied to remapped columns)</dd>
-<dt>indent</dt>
-<dd>add an indent in front</dd>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pg_cur</strong> – the psycopg cursor</p></li>
+<li><p><strong>table_schema</strong> – the schema</p></li>
+<li><p><strong>table_name</strong> – the name of the table</p></li>
+<li><p><strong>table_type</strong> – the type of table, i.e. view or table</p></li>
+<li><p><strong>table_alias</strong> – if not specified, table is used</p></li>
+<li><p><strong>remove_pkey</strong> – if True, the primary is removed from the list</p></li>
+<li><p><strong>skip_columns</strong> – list of columns to be skipped, raise an exception if the column does not exist</p></li>
+<li><p><strong>safe_skip_columns</strong> – list of columns to be skipped, do not raise exception if column does not exist</p></li>
+<li><p><strong>columns_list</strong> – if given use as list of columns</p></li>
+<li><p><strong>comment_skipped</strong> – if True, skipped columns are written but commented, otherwise they are not written
+If remove_pkey is True, the primary key will not be printed</p></li>
+<li><p><strong>remap_columns</strong> – dictionary to remap columns</p></li>
+<li><p><strong>columns_on_top</strong> – bring the columns to the front of the list</p></li>
+<li><p><strong>columns_at_end</strong> – bring the columns to the end of the list</p></li>
+<li><p><strong>prefix</strong> – add a prefix to the columns (do not applied to remapped columns)</p></li>
+<li><p><strong>indent</strong> – add an indent in front</p></li>
+</ul>
+</dd>
 </dl>
 </dd></dl>
 
@@ -270,9 +239,10 @@ If remove_pkey is True, the primary key will not be printed</dd>
 <dt id="pirogue.utils.table_parts">
 <code class="descclassname">pirogue.utils.</code><code class="descname">table_parts</code><span class="sig-paren">(</span><em>name: str) -&gt; (&lt;class 'str'&gt;</em>, <em>&lt;class 'str'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/utils.html#table_parts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.utils.table_parts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a tuple with schema and table names</p>
-<dl class="docutils">
-<dt>name</dt>
-<dd>the schema specified name of the table or view.</dd>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> – the schema specified name of the table or view.</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -310,7 +280,7 @@ If remove_pkey is True, the primary key will not be printed</dd>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="pirogue.information_schema.html" class="btn btn-neutral" title="pirogue.information_schema" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pirogue.information_schema.html" class="btn btn-neutral float-left" title="pirogue.information_schema" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -334,43 +304,18 @@ If remove_pkey is True, the primary key will not be printed</dd>
 
   </div>
   
-    
-<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-info-circle"> pirogue </span>
-    v: 
-    <span class="fa fa-caret-down"></span>
-  </span>
-  <div class="rst-other-versions">
-    <dl>
-      <dt>Versions</dt>
-      
-    </dl>
-    
-  </div>
-</div>
-  
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

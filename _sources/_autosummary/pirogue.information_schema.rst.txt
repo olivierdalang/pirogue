@@ -23,12 +23,4 @@ pirogue.information\_schema
 
    
    
-   .. rubric:: Exceptions
-
-   .. autosummary::
-   
-      InvalidSkipColumns
-      NoReferenceFound
-      TableHasNoPrimaryKey
-   
    

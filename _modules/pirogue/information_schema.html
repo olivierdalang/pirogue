@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pirogue.information_schema &mdash; pirogue 0.5 documentation</title>
+  <title>pirogue.information_schema &mdash; pirogue  documentation</title>
   
 
   
@@ -17,32 +17,34 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -52,6 +54,9 @@
           
           </a>
 
+          
+            
+            
           
 
           
@@ -142,29 +147,22 @@
             
   <h1>Source code for pirogue.information_schema</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-
+<span class="kn">from</span> <span class="nn">pirogue.exceptions</span> <span class="k">import</span> <span class="n">TableHasNoPrimaryKey</span><span class="p">,</span> <span class="n">NoReferenceFound</span><span class="p">,</span> <span class="n">InvalidSkipColumns</span>
 <span class="kn">from</span> <span class="nn">psycopg2.extensions</span> <span class="k">import</span> <span class="n">cursor</span>
 
 
-<div class="viewcode-block" id="TableHasNoPrimaryKey"><a class="viewcode-back" href="../../_autosummary/pirogue.information_schema.html#pirogue.information_schema.TableHasNoPrimaryKey">[docs]</a><span class="k">class</span> <span class="nc">TableHasNoPrimaryKey</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="NoReferenceFound"><a class="viewcode-back" href="../../_autosummary/pirogue.information_schema.html#pirogue.information_schema.NoReferenceFound">[docs]</a><span class="k">class</span> <span class="nc">NoReferenceFound</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="InvalidSkipColumns"><a class="viewcode-back" href="../../_autosummary/pirogue.information_schema.html#pirogue.information_schema.InvalidSkipColumns">[docs]</a><span class="k">class</span> <span class="nc">InvalidSkipColumns</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="k">pass</span></div>
-
-
-<div class="viewcode-block" id="primary_key"><a class="viewcode-back" href="../../_autosummary/pirogue.information_schema.html#pirogue.information_schema.primary_key">[docs]</a><span class="k">def</span> <span class="nf">primary_key</span><span class="p">(</span><span class="n">pg_cur</span><span class="p">:</span> <span class="n">cursor</span><span class="p">,</span> <span class="n">schema</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="primary_key"><a class="viewcode-back" href="../../_autosummary/pirogue.information_schema.html#pirogue.information_schema.primary_key">[docs]</a><span class="k">def</span> <span class="nf">primary_key</span><span class="p">(</span><span class="n">pg_cur</span><span class="p">:</span> <span class="n">cursor</span><span class="p">,</span> <span class="n">schema_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the primary of a table</span>
-<span class="sd">    :param pg_cur: psycopg cursor</span>
-<span class="sd">    :param schema: the schema</span>
-<span class="sd">    :param table: the table</span>
-<span class="sd">    :return:</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pg_cur</span>
+<span class="sd">        psycopg cursor</span>
+<span class="sd">    schema_name</span>
+<span class="sd">        the schema name</span>
+<span class="sd">    table_name</span>
+<span class="sd">        the table name</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT c.column_name&quot;</span>\
           <span class="s2">&quot; FROM information_schema.key_column_usage AS c &quot;</span>\
@@ -172,7 +170,7 @@
           <span class="s2">&quot; ON t.constraint_name = c.constraint_name&quot;</span>\
           <span class="s2">&quot; WHERE t.table_name = &#39;</span><span class="si">{t}</span><span class="s2">&#39;&quot;</span>\
           <span class="s2">&quot; AND t.table_schema = &#39;</span><span class="si">{s}</span><span class="s2">&#39;&quot;</span>\
-          <span class="s2">&quot; AND t.constraint_type = &#39;PRIMARY KEY&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">table</span><span class="p">)</span>
+          <span class="s2">&quot; AND t.constraint_type = &#39;PRIMARY KEY&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">schema_name</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">table_name</span><span class="p">)</span>
     <span class="n">pg_cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">pkey</span> <span class="o">=</span> <span class="n">pg_cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
@@ -184,14 +182,22 @@
 <div class="viewcode-block" id="columns"><a class="viewcode-back" href="../../_autosummary/pirogue.information_schema.html#pirogue.information_schema.columns">[docs]</a><span class="k">def</span> <span class="nf">columns</span><span class="p">(</span><span class="n">pg_cur</span><span class="p">:</span> <span class="n">cursor</span><span class="p">,</span> <span class="n">table_schema</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">table_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;table&#39;</span><span class="p">,</span>
             <span class="n">remove_pkey</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">skip_columns</span><span class="p">:</span> <span class="nb">list</span><span class="o">=</span><span class="p">[])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns the columns of a table</span>
-<span class="sd">    :param pg_cur: psycopg cursor</span>
-<span class="sd">    :param table_schema: the table_schema</span>
-<span class="sd">    :param table_name: the table</span>
-<span class="sd">    :param table_type: the type of table, i.e. view or table</span>
-<span class="sd">    :param remove_pkey: if True, the primary key is dropped</span>
-<span class="sd">    :param skip_columns: list of columns to be skipped</span>
-<span class="sd">    :return: the list of columns</span>
+<span class="sd">    Returns the list of columns of a table</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pg_cur</span>
+<span class="sd">        psycopg cursor</span>
+<span class="sd">    table_schema</span>
+<span class="sd">        the table_schema</span>
+<span class="sd">    table_name</span>
+<span class="sd">        the table</span>
+<span class="sd">    table_type</span>
+<span class="sd">        the type of table, i.e. view or table</span>
+<span class="sd">    remove_pkey</span>
+<span class="sd">        if True, the primary key is dropped</span>
+<span class="sd">    skip_columns</span>
+<span class="sd">        list of columns to be skipped</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">assert</span> <span class="n">table_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="s1">&#39;view&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">table_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;table&#39;</span><span class="p">:</span>
@@ -233,12 +239,19 @@
                       <span class="n">foreign_table_schema</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">foreign_table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the columns use in a reference constraint</span>
-<span class="sd">    :param pg_cur:</span>
-<span class="sd">    :param table_schema:</span>
-<span class="sd">    :param table_name:</span>
-<span class="sd">    :param foreign_table_schema:</span>
-<span class="sd">    :param foreign_table_name:</span>
-<span class="sd">    :return:</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pg_cur</span>
+<span class="sd">        the psycopg cursor</span>
+<span class="sd">    table_schema</span>
+<span class="sd">        the table schema</span>
+<span class="sd">    table_name</span>
+<span class="sd">        the table name</span>
+<span class="sd">    foreign_table_schema</span>
+<span class="sd">        the schema of the foreign table</span>
+<span class="sd">    foreign_table_name</span>
+<span class="sd">        the name of the foreign table</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># see https://stackoverflow.com/a/1152321/1548052</span>
     <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT kcu.column_name, ccu.column_name AS foreign_column_name &quot;</span> \
@@ -270,11 +283,17 @@
 <div class="viewcode-block" id="default_value"><a class="viewcode-back" href="../../_autosummary/pirogue.information_schema.html#pirogue.information_schema.default_value">[docs]</a><span class="k">def</span> <span class="nf">default_value</span><span class="p">(</span><span class="n">pg_cur</span><span class="p">:</span> <span class="n">cursor</span><span class="p">,</span> <span class="n">table_schema</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the default value of the column</span>
-<span class="sd">    :param pg_cur:</span>
-<span class="sd">    :param table_schema:</span>
-<span class="sd">    :param table_name:</span>
-<span class="sd">    :param column:</span>
-<span class="sd">    :return:</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pg_cur</span>
+<span class="sd">        the psycopg cursor</span>
+<span class="sd">    table_schema</span>
+<span class="sd">        the table schema</span>
+<span class="sd">    table_name</span>
+<span class="sd">        the table name</span>
+<span class="sd">    column</span>
+<span class="sd">        the column name</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># see https://stackoverflow.com/a/8148177/1548052</span>
 
@@ -292,14 +311,20 @@
     <span class="k">return</span> <span class="n">pg_cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="s1">&#39;NULL&#39;</span></div>
 
 
-<div class="viewcode-block" id="geometry_type"><a class="viewcode-back" href="../../_autosummary/pirogue.information_schema.html#pirogue.information_schema.geometry_type">[docs]</a><span class="k">def</span> <span class="nf">geometry_type</span><span class="p">(</span><span class="n">pg_cur</span><span class="p">:</span> <span class="n">cursor</span><span class="p">,</span> <span class="n">table_schema</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<div class="viewcode-block" id="geometry_type"><a class="viewcode-back" href="../../_autosummary/pirogue.information_schema.html#pirogue.information_schema.geometry_type">[docs]</a><span class="k">def</span> <span class="nf">geometry_type</span><span class="p">(</span><span class="n">pg_cur</span><span class="p">:</span> <span class="n">cursor</span><span class="p">,</span> <span class="n">table_schema</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;geometry&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="nb">int</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns the geometry type of a column</span>
-<span class="sd">    :param pg_cur:</span>
-<span class="sd">    :param table_schema:</span>
-<span class="sd">    :param table_name:</span>
-<span class="sd">    :param column:</span>
-<span class="sd">    :return: a tuple (type, srid)</span>
+<span class="sd">    Returns the geometry type of a column as a tuple (type, srid)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pg_cur</span>
+<span class="sd">        the psycopg cursor</span>
+<span class="sd">    table_schema</span>
+<span class="sd">        the table schema</span>
+<span class="sd">    table_name</span>
+<span class="sd">        the table name</span>
+<span class="sd">    column:</span>
+<span class="sd">        the geometry column name, defaults to &quot;geometry&quot;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT type, srid &quot;</span> \
           <span class="s2">&quot;FROM geometry_columns &quot;</span> \
@@ -342,43 +367,18 @@
 
   </div>
   
-    
-<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-      <span class="fa fa-info-circle"> pirogue </span>
-    v: 
-    <span class="fa fa-caret-down"></span>
-  </span>
-  <div class="rst-other-versions">
-    <dl>
-      <dt>Versions</dt>
-      
-    </dl>
-    
-  </div>
-</div>
-  
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
