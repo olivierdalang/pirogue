@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pirogue.Merge &mdash; pirogue  documentation</title>
+  <title>pirogue.SimpleJoins &mdash; pirogue  documentation</title>
   
 
   
@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="pirogue.Join" href="pirogue.Join.html" />
-    <link rel="prev" title="Welcome to pirogue’s documentation!" href="../index.html" /> 
+    <link rel="next" title="pirogue.information_schema" href="pirogue.information_schema.html" />
+    <link rel="prev" title="pirogue.MultipleInheritance" href="pirogue.MultipleInheritance.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -81,8 +81,9 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">pirogue.Merge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pirogue.Join.html">pirogue.Join</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pirogue.SingleInheritance.html">pirogue.SingleInheritance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pirogue.MultipleInheritance.html">pirogue.MultipleInheritance</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pirogue.SimpleJoins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pirogue.information_schema.html">pirogue.information_schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pirogue.utils.html">pirogue.utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pirogue.exceptions.html">pirogue.exceptions</a></li>
@@ -131,13 +132,13 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>pirogue.Merge</li>
+      <li>pirogue.SimpleJoins</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/_autosummary/pirogue.Merge.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_autosummary/pirogue.SimpleJoins.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -150,47 +151,45 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pirogue-merge">
-<h1>pirogue.Merge<a class="headerlink" href="#pirogue-merge" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="pirogue-simplejoins">
+<h1>pirogue.SimpleJoins<a class="headerlink" href="#pirogue-simplejoins" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="pirogue.Merge">
-<em class="property">class </em><code class="descclassname">pirogue.</code><code class="descname">Merge</code><span class="sig-paren">(</span><em>definition: dict</em>, <em>pg_service: str = None</em>, <em>variables: dict = {}</em>, <em>create_joins: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/merge.html#Merge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.Merge" title="Permalink to this definition">¶</a></dt>
+<dt id="pirogue.SimpleJoins">
+<em class="property">class </em><code class="sig-prename descclassname">pirogue.</code><code class="sig-name descname">SimpleJoins</code><span class="sig-paren">(</span><em class="sig-param">definition: dict</em>, <em class="sig-param">pg_service: str = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/simple_joins.html#SimpleJoins"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.SimpleJoins" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Creates a merge view with associated triggers to edit.</p>
+<p>Creates a view made of simple joins, without any edit triggers.</p>
 <dl class="method">
-<dt id="pirogue.Merge.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>definition: dict</em>, <em>pg_service: str = None</em>, <em>variables: dict = {}</em>, <em>create_joins: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/merge.html#Merge.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.Merge.__init__" title="Permalink to this definition">¶</a></dt>
+<dt id="pirogue.SimpleJoins.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">definition: dict</em>, <em class="sig-param">pg_service: str = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/simple_joins.html#SimpleJoins.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.SimpleJoins.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Produces the SQL code of the join table and triggers</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>definition</strong> – the YAML definition of the merge view</p></li>
+<li><p><strong>definition</strong> – the YAML definition of the multiple inheritance</p></li>
 <li><p><strong>pg_service</strong> – if not given, it is determined using environment variable PGSERVICE</p></li>
-<li><p><strong>variables</strong> – dictionary for variables to be used in SQL deltas ( name =&gt; value )</p></li>
-<li><p><strong>create_joins</strong> – if True, simple joins will be created for all joined tables</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pirogue.Merge.__init__" title="pirogue.Merge.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(definition, pg_service, variables, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pirogue.SimpleJoins.__init__" title="pirogue.SimpleJoins.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(definition[, pg_service])</p></td>
 <td><p>Produces the SQL code of the join table and triggers</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pirogue.Merge.create" title="pirogue.Merge.create"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pirogue.SimpleJoins.create" title="pirogue.SimpleJoins.create"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create</span></code></a>()</p></td>
 <td><p>Creates the merge view on the specified service Returns True in case of success</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
-<dt id="pirogue.Merge.create">
-<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/pirogue/merge.html#Merge.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.Merge.create" title="Permalink to this definition">¶</a></dt>
+<dt id="pirogue.SimpleJoins.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/pirogue/simple_joins.html#SimpleJoins.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.SimpleJoins.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates the merge view on the specified service
 Returns True in case of success</p>
 </dd></dl>
@@ -207,10 +206,10 @@ Returns True in case of success</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pirogue.Join.html" class="btn btn-neutral float-right" title="pirogue.Join" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pirogue.information_schema.html" class="btn btn-neutral float-right" title="pirogue.information_schema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to pirogue’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pirogue.MultipleInheritance.html" class="btn btn-neutral float-left" title="pirogue.MultipleInheritance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

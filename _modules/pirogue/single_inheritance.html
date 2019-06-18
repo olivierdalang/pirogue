@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pirogue.join &mdash; pirogue  documentation</title>
+  <title>pirogue.single_inheritance &mdash; pirogue  documentation</title>
   
 
   
@@ -79,8 +79,9 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.Merge.html">pirogue.Merge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.Join.html">pirogue.Join</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.SingleInheritance.html">pirogue.SingleInheritance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.MultipleInheritance.html">pirogue.MultipleInheritance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.SimpleJoins.html">pirogue.SimpleJoins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.information_schema.html">pirogue.information_schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.utils.html">pirogue.utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.exceptions.html">pirogue.exceptions</a></li>
@@ -131,7 +132,7 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
-      <li>pirogue.join</li>
+      <li>pirogue.single_inheritance</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -146,7 +147,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for pirogue.join</h1><div class="highlight"><pre>
+  <h1>Source code for pirogue.single_inheritance</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
@@ -158,12 +159,12 @@
 <span class="kn">from</span> <span class="nn">pirogue.exceptions</span> <span class="k">import</span> <span class="n">TableHasNoPrimaryKey</span>
 
 
-<div class="viewcode-block" id="Join"><a class="viewcode-back" href="../../_autosummary/pirogue.Join.html#pirogue.Join">[docs]</a><span class="k">class</span> <span class="nc">Join</span><span class="p">:</span>
+<div class="viewcode-block" id="SingleInheritance"><a class="viewcode-back" href="../../_autosummary/pirogue.SingleInheritance.html#pirogue.SingleInheritance">[docs]</a><span class="k">class</span> <span class="nc">SingleInheritance</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Creates a simple join view with associated triggers to edit.</span>
+<span class="sd">    Creates a join view with associated triggers to edit for a single inheritance.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Join.__init__"><a class="viewcode-back" href="../../_autosummary/pirogue.Join.html#pirogue.Join.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">child_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<div class="viewcode-block" id="SingleInheritance.__init__"><a class="viewcode-back" href="../../_autosummary/pirogue.SingleInheritance.html#pirogue.SingleInheritance.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">child_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
                  <span class="n">pg_service</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">view_schema</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">view_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -218,11 +219,12 @@
 
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent_pkey</span> <span class="o">==</span> <span class="n">parent_referenced_key</span></div>
 
-<div class="viewcode-block" id="Join.create"><a class="viewcode-back" href="../../_autosummary/pirogue.Join.html#pirogue.Join.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="SingleInheritance.create"><a class="viewcode-back" href="../../_autosummary/pirogue.SingleInheritance.html#pirogue.SingleInheritance.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates the merge view on the specified service</span>
 <span class="sd">        Returns True in case of success</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">success</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">for</span> <span class="n">sql</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__view</span><span class="p">(),</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">__insert_trigger</span><span class="p">(),</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">__update_trigger</span><span class="p">(),</span>
@@ -233,11 +235,12 @@
                 <span class="k">if</span> <span class="n">sql</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">success</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** Failing:</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">***&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sql</span><span class="p">))</span>
                 <span class="k">raise</span> <span class="n">e</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="k">return</span> <span class="kc">True</span></div>
+        <span class="k">return</span> <span class="n">success</span></div>
 
     <span class="k">def</span> <span class="nf">__view</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>

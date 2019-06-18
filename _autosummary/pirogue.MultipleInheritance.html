@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pirogue.Join &mdash; pirogue  documentation</title>
+  <title>pirogue.MultipleInheritance &mdash; pirogue  documentation</title>
   
 
   
@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="pirogue.information_schema" href="pirogue.information_schema.html" />
-    <link rel="prev" title="pirogue.Merge" href="pirogue.Merge.html" /> 
+    <link rel="next" title="pirogue.SimpleJoins" href="pirogue.SimpleJoins.html" />
+    <link rel="prev" title="pirogue.SingleInheritance" href="pirogue.SingleInheritance.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -81,8 +81,9 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="pirogue.Merge.html">pirogue.Merge</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">pirogue.Join</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pirogue.SingleInheritance.html">pirogue.SingleInheritance</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pirogue.MultipleInheritance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pirogue.SimpleJoins.html">pirogue.SimpleJoins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pirogue.information_schema.html">pirogue.information_schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pirogue.utils.html">pirogue.utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pirogue.exceptions.html">pirogue.exceptions</a></li>
@@ -131,13 +132,13 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>pirogue.Join</li>
+      <li>pirogue.MultipleInheritance</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/_autosummary/pirogue.Join.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_autosummary/pirogue.MultipleInheritance.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -150,49 +151,48 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pirogue-join">
-<h1>pirogue.Join<a class="headerlink" href="#pirogue-join" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="pirogue-multipleinheritance">
+<h1>pirogue.MultipleInheritance<a class="headerlink" href="#pirogue-multipleinheritance" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="pirogue.Join">
-<em class="property">class </em><code class="descclassname">pirogue.</code><code class="descname">Join</code><span class="sig-paren">(</span><em>parent_table: str</em>, <em>child_table: str</em>, <em>pg_service: str = None</em>, <em>view_schema: str = None</em>, <em>view_name: str = None</em>, <em>pkey_default_value: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/join.html#Join"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.Join" title="Permalink to this definition">¶</a></dt>
+<dt id="pirogue.MultipleInheritance">
+<em class="property">class </em><code class="sig-prename descclassname">pirogue.</code><code class="sig-name descname">MultipleInheritance</code><span class="sig-paren">(</span><em class="sig-param">definition: dict</em>, <em class="sig-param">pg_service: str = None</em>, <em class="sig-param">variables: dict = {}</em>, <em class="sig-param">create_joins: bool = False</em>, <em class="sig-param">drop: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/multiple_inheritance.html#MultipleInheritance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.MultipleInheritance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Creates a simple join view with associated triggers to edit.</p>
+<p>Creates a view for multiple inheritance objects with associated triggers to edit data.</p>
 <dl class="method">
-<dt id="pirogue.Join.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>parent_table: str</em>, <em>child_table: str</em>, <em>pg_service: str = None</em>, <em>view_schema: str = None</em>, <em>view_name: str = None</em>, <em>pkey_default_value: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/join.html#Join.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.Join.__init__" title="Permalink to this definition">¶</a></dt>
+<dt id="pirogue.MultipleInheritance.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">definition: dict</em>, <em class="sig-param">pg_service: str = None</em>, <em class="sig-param">variables: dict = {}</em>, <em class="sig-param">create_joins: bool = False</em>, <em class="sig-param">drop: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/multiple_inheritance.html#MultipleInheritance.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.MultipleInheritance.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Produces the SQL code of the join table and triggers</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>definition</strong> – the YAML definition of the multiple inheritance</p></li>
 <li><p><strong>pg_service</strong> – if not given, it is determined using environment variable PGSERVICE</p></li>
-<li><p><strong>parent_table</strong> – the parent table, can be schema specified</p></li>
-<li><p><strong>child_table</strong> – the child table, can be schema specified</p></li>
-<li><p><strong>view_schema</strong> – the schema where the view will written to</p></li>
-<li><p><strong>view_name</strong> – the name of the created view, defaults to vw_{parent_table}_{join_table}</p></li>
-<li><p><strong>pkey_default_value</strong> – the primary key column of the view will have a default value according to the child primary key table</p></li>
+<li><p><strong>variables</strong> – dictionary for variables to be used in SQL deltas ( name =&gt; value )</p></li>
+<li><p><strong>create_joins</strong> – if True, simple joins will be created for all joined tables</p></li>
+<li><p><strong>drop</strong> – if True, will drop any existing view, type or trigger that will be created later</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pirogue.Join.__init__" title="pirogue.Join.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(parent_table, child_table, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pirogue.MultipleInheritance.__init__" title="pirogue.MultipleInheritance.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(definition[, pg_service, …])</p></td>
 <td><p>Produces the SQL code of the join table and triggers</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pirogue.Join.create" title="pirogue.Join.create"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pirogue.MultipleInheritance.create" title="pirogue.MultipleInheritance.create"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create</span></code></a>()</p></td>
 <td><p>Creates the merge view on the specified service Returns True in case of success</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
-<dt id="pirogue.Join.create">
-<code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/pirogue/join.html#Join.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.Join.create" title="Permalink to this definition">¶</a></dt>
+<dt id="pirogue.MultipleInheritance.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="../_modules/pirogue/multiple_inheritance.html#MultipleInheritance.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.MultipleInheritance.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates the merge view on the specified service
 Returns True in case of success</p>
 </dd></dl>
@@ -209,10 +209,10 @@ Returns True in case of success</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pirogue.information_schema.html" class="btn btn-neutral float-right" title="pirogue.information_schema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pirogue.SimpleJoins.html" class="btn btn-neutral float-right" title="pirogue.SimpleJoins" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pirogue.Merge.html" class="btn btn-neutral float-left" title="pirogue.Merge" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pirogue.SingleInheritance.html" class="btn btn-neutral float-left" title="pirogue.SingleInheritance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -81,8 +81,9 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="pirogue.Merge.html">pirogue.Merge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pirogue.Join.html">pirogue.Join</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pirogue.SingleInheritance.html">pirogue.SingleInheritance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pirogue.MultipleInheritance.html">pirogue.MultipleInheritance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pirogue.SimpleJoins.html">pirogue.SimpleJoins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pirogue.information_schema.html">pirogue.information_schema</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">pirogue.utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pirogue.exceptions.html">pirogue.exceptions</a></li>
@@ -153,13 +154,13 @@
   <div class="section" id="module-pirogue.utils">
 <span id="pirogue-utils"></span><h1>pirogue.utils<a class="headerlink" href="#module-pirogue.utils" title="Permalink to this headline">¶</a></h1>
 <p class="rubric">Functions</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pirogue.utils.insert_command" title="pirogue.utils.insert_command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">insert_command</span></code></a>(pg_cur, table_schema, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pirogue.utils.insert_command" title="pirogue.utils.insert_command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">insert_command</span></code></a>(pg_cur, table_schema, table_name)</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">param pg_cur</dt>
 <dd class="field-odd"><p>the psycopg cursor</p>
@@ -167,20 +168,20 @@
 </dl>
 </p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pirogue.utils.select_columns" title="pirogue.utils.select_columns"><code class="xref py py-obj docutils literal notranslate"><span class="pre">select_columns</span></code></a>(pg_cur, table_schema, …)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pirogue.utils.select_columns" title="pirogue.utils.select_columns"><code class="xref py py-obj docutils literal notranslate"><span class="pre">select_columns</span></code></a>(pg_cur, table_schema, table_name)</p></td>
 <td><p>Returns the list of columns to be used in a SELECT command</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#pirogue.utils.table_parts" title="pirogue.utils.table_parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">table_parts</span></code></a>(name)</p></td>
 <td><p>Returns a tuple with schema and table names</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pirogue.utils.update_command" title="pirogue.utils.update_command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_command</span></code></a>(pg_cur, table_schema, …)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pirogue.utils.update_command" title="pirogue.utils.update_command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_command</span></code></a>(pg_cur, table_schema, table_name)</p></td>
 <td><p>Creates an UPDATE command :param pg_cur: the psycopg cursor :param table_schema: the schema :param table_name: the name of the table :param table_type: the type of table, i.e.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="function">
 <dt id="pirogue.utils.insert_command">
-<code class="descclassname">pirogue.utils.</code><code class="descname">insert_command</code><span class="sig-paren">(</span><em>pg_cur: psycopg2.extensions.cursor</em>, <em>table_schema: str</em>, <em>table_name: str</em>, <em>table_type: str = 'table'</em>, <em>table_alias: str = None</em>, <em>remove_pkey: bool = True</em>, <em>pkey: str = None</em>, <em>coalesce_pkey_default: bool = False</em>, <em>skip_columns: list = []</em>, <em>comment_skipped: bool = True</em>, <em>remap_columns: dict = {}</em>, <em>insert_values: dict = {}</em>, <em>columns_on_top: list = []</em>, <em>columns_at_end: list = []</em>, <em>prefix: str = None</em>, <em>returning: str = None</em>, <em>indent: int = 2</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/pirogue/utils.html#insert_command"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.utils.insert_command" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pirogue.utils.</code><code class="sig-name descname">insert_command</code><span class="sig-paren">(</span><em class="sig-param">pg_cur: psycopg2.extensions.cursor</em>, <em class="sig-param">table_schema: str</em>, <em class="sig-param">table_name: str</em>, <em class="sig-param">table_type: str = 'table'</em>, <em class="sig-param">table_alias: str = None</em>, <em class="sig-param">remove_pkey: bool = True</em>, <em class="sig-param">pkey: str = None</em>, <em class="sig-param">coalesce_pkey_default: bool = False</em>, <em class="sig-param">skip_columns: list = []</em>, <em class="sig-param">comment_skipped: bool = True</em>, <em class="sig-param">remap_columns: dict = {}</em>, <em class="sig-param">insert_values: dict = {}</em>, <em class="sig-param">columns_on_top: list = []</em>, <em class="sig-param">columns_at_end: list = []</em>, <em class="sig-param">prefix: str = None</em>, <em class="sig-param">returning: str = None</em>, <em class="sig-param">indent: int = 2</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/pirogue/utils.html#insert_command"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.utils.insert_command" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -211,7 +212,7 @@
 
 <dl class="function">
 <dt id="pirogue.utils.select_columns">
-<code class="descclassname">pirogue.utils.</code><code class="descname">select_columns</code><span class="sig-paren">(</span><em>pg_cur: psycopg2.extensions.cursor</em>, <em>table_schema: str</em>, <em>table_name: str</em>, <em>table_type: str = 'table'</em>, <em>table_alias: str = None</em>, <em>remove_pkey: bool = False</em>, <em>skip_columns: list = []</em>, <em>safe_skip_columns: list = []</em>, <em>columns_list: list = None</em>, <em>comment_skipped: bool = True</em>, <em>remap_columns: dict = {}</em>, <em>columns_on_top: list = []</em>, <em>columns_at_end: list = []</em>, <em>prefix: str = None</em>, <em>indent: int = 2</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/pirogue/utils.html#select_columns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.utils.select_columns" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pirogue.utils.</code><code class="sig-name descname">select_columns</code><span class="sig-paren">(</span><em class="sig-param">pg_cur: psycopg2.extensions.cursor</em>, <em class="sig-param">table_schema: str</em>, <em class="sig-param">table_name: str</em>, <em class="sig-param">table_type: str = 'table'</em>, <em class="sig-param">table_alias: str = None</em>, <em class="sig-param">remove_pkey: bool = False</em>, <em class="sig-param">skip_columns: list = []</em>, <em class="sig-param">safe_skip_columns: list = []</em>, <em class="sig-param">columns_list: list = None</em>, <em class="sig-param">comment_skipped: bool = True</em>, <em class="sig-param">remap_columns: dict = {}</em>, <em class="sig-param">columns_on_top: list = []</em>, <em class="sig-param">columns_at_end: list = []</em>, <em class="sig-param">prefix: str = None</em>, <em class="sig-param">indent: int = 2</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/pirogue/utils.html#select_columns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.utils.select_columns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the list of columns to be used in a SELECT command</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -239,7 +240,7 @@ If remove_pkey is True, the primary key will not be printed</p></li>
 
 <dl class="function">
 <dt id="pirogue.utils.table_parts">
-<code class="descclassname">pirogue.utils.</code><code class="descname">table_parts</code><span class="sig-paren">(</span><em>name: str) -&gt; (&lt;class 'str'&gt;</em>, <em>&lt;class 'str'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/utils.html#table_parts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.utils.table_parts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pirogue.utils.</code><code class="sig-name descname">table_parts</code><span class="sig-paren">(</span><em class="sig-param">name: str) -&gt; (&lt;class 'str'&gt;</em>, <em class="sig-param">&lt;class 'str'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/utils.html#table_parts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.utils.table_parts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a tuple with schema and table names</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -250,7 +251,7 @@ If remove_pkey is True, the primary key will not be printed</p></li>
 
 <dl class="function">
 <dt id="pirogue.utils.update_command">
-<code class="descclassname">pirogue.utils.</code><code class="descname">update_command</code><span class="sig-paren">(</span><em>pg_cur: psycopg2.extensions.cursor</em>, <em>table_schema: str</em>, <em>table_name: str</em>, <em>table_alias: str = None</em>, <em>table_type: str = 'table'</em>, <em>remove_pkey: bool = True</em>, <em>pkey: str = None</em>, <em>skip_columns: list = []</em>, <em>comment_skipped: bool = True</em>, <em>remap_columns: dict = {}</em>, <em>update_values: dict = {}</em>, <em>columns_on_top: list = []</em>, <em>columns_at_end: list = []</em>, <em>prefix: str = None</em>, <em>where_clause: str = None</em>, <em>indent: int = 2</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/pirogue/utils.html#update_command"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.utils.update_command" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pirogue.utils.</code><code class="sig-name descname">update_command</code><span class="sig-paren">(</span><em class="sig-param">pg_cur: psycopg2.extensions.cursor</em>, <em class="sig-param">table_schema: str</em>, <em class="sig-param">table_name: str</em>, <em class="sig-param">table_alias: str = None</em>, <em class="sig-param">table_type: str = 'table'</em>, <em class="sig-param">remove_pkey: bool = True</em>, <em class="sig-param">pkey: str = None</em>, <em class="sig-param">skip_columns: list = []</em>, <em class="sig-param">comment_skipped: bool = True</em>, <em class="sig-param">remap_columns: dict = {}</em>, <em class="sig-param">update_values: dict = {}</em>, <em class="sig-param">columns_on_top: list = []</em>, <em class="sig-param">columns_at_end: list = []</em>, <em class="sig-param">prefix: str = None</em>, <em class="sig-param">where_clause: str = None</em>, <em class="sig-param">indent: int = 2</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/pirogue/utils.html#update_command"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.utils.update_command" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates an UPDATE command
 :param pg_cur: the psycopg cursor
 :param table_schema: the schema

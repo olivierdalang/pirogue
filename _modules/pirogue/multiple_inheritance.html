@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pirogue.merge &mdash; pirogue  documentation</title>
+  <title>pirogue.multiple_inheritance &mdash; pirogue  documentation</title>
   
 
   
@@ -79,8 +79,9 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.Merge.html">pirogue.Merge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.Join.html">pirogue.Join</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.SingleInheritance.html">pirogue.SingleInheritance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.MultipleInheritance.html">pirogue.MultipleInheritance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.SimpleJoins.html">pirogue.SimpleJoins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.information_schema.html">pirogue.information_schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.utils.html">pirogue.utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../_autosummary/pirogue.exceptions.html">pirogue.exceptions</a></li>
@@ -131,7 +132,7 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
-      <li>pirogue.merge</li>
+      <li>pirogue.multiple_inheritance</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -146,7 +147,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for pirogue.merge</h1><div class="highlight"><pre>
+  <h1>Source code for pirogue.multiple_inheritance</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
@@ -156,35 +157,40 @@
 <span class="kn">from</span> <span class="nn">pirogue.utils</span> <span class="k">import</span> <span class="n">table_parts</span><span class="p">,</span> <span class="n">select_columns</span><span class="p">,</span> <span class="n">insert_command</span><span class="p">,</span> <span class="n">update_command</span>
 <span class="kn">from</span> <span class="nn">pirogue.information_schema</span> <span class="k">import</span> <span class="n">reference_columns</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">geometry_type</span>
 <span class="kn">from</span> <span class="nn">pirogue.exceptions</span> <span class="k">import</span> <span class="n">TableHasNoPrimaryKey</span><span class="p">,</span> <span class="n">VariableError</span><span class="p">,</span> <span class="n">InvalidDefinition</span>
-<span class="kn">from</span> <span class="nn">pirogue.join</span> <span class="k">import</span> <span class="n">Join</span>
+<span class="kn">from</span> <span class="nn">pirogue.single_inheritance</span> <span class="k">import</span> <span class="n">SingleInheritance</span>
 
 
-<div class="viewcode-block" id="Merge"><a class="viewcode-back" href="../../_autosummary/pirogue.Merge.html#pirogue.Merge">[docs]</a><span class="k">class</span> <span class="nc">Merge</span><span class="p">:</span>
+<div class="viewcode-block" id="MultipleInheritance"><a class="viewcode-back" href="../../_autosummary/pirogue.MultipleInheritance.html#pirogue.MultipleInheritance">[docs]</a><span class="k">class</span> <span class="nc">MultipleInheritance</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Creates a merge view with associated triggers to edit.</span>
+<span class="sd">    Creates a view for multiple inheritance objects with associated triggers to edit data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Merge.__init__"><a class="viewcode-back" href="../../_autosummary/pirogue.Merge.html#pirogue.Merge.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">definition</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+<div class="viewcode-block" id="MultipleInheritance.__init__"><a class="viewcode-back" href="../../_autosummary/pirogue.MultipleInheritance.html#pirogue.MultipleInheritance.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">definition</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
                  <span class="n">pg_service</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">variables</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span>
-                 <span class="n">create_joins</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+                 <span class="n">create_joins</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">drop</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Produces the SQL code of the join table and triggers</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        definition</span>
-<span class="sd">            the YAML definition of the merge view</span>
+<span class="sd">            the YAML definition of the multiple inheritance</span>
 <span class="sd">        pg_service</span>
 <span class="sd">            if not given, it is determined using environment variable PGSERVICE</span>
 <span class="sd">        variables</span>
 <span class="sd">            dictionary for variables to be used in SQL deltas ( name =&gt; value )</span>
 <span class="sd">        create_joins</span>
 <span class="sd">            if True, simple joins will be created for all joined tables</span>
+<span class="sd">        drop</span>
+<span class="sd">            if True, will drop any existing view, type or trigger that will be created later</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">variables</span> <span class="o">=</span> <span class="n">variables</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">create_joins</span> <span class="o">=</span> <span class="n">create_joins</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">drop</span> <span class="o">=</span> <span class="n">drop</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">pg_service</span> <span class="o">=</span> <span class="n">pg_service</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pg_service</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -273,24 +279,29 @@
                 <span class="k">raise</span> <span class="n">InvalidDefinition</span><span class="p">(</span><span class="s1">&#39;There is no geometry column &quot;</span><span class="si">{col}</span><span class="s1">&quot; in joined tables&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="n">col</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">merge_columns</span> <span class="o">=</span> <span class="n">definition</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;merge_columns&#39;</span><span class="p">,</span> <span class="p">[])</span> <span class="o">+</span> <span class="n">merge_geometry_columns</span></div>
 
-<div class="viewcode-block" id="Merge.create"><a class="viewcode-back" href="../../_autosummary/pirogue.Merge.html#pirogue.Merge.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="MultipleInheritance.create"><a class="viewcode-back" href="../../_autosummary/pirogue.MultipleInheritance.html#pirogue.MultipleInheritance.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates the merge view on the specified service</span>
 <span class="sd">        Returns True in case of success</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">queries</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">success</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop</span><span class="p">:</span>
+            <span class="n">queries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__drops</span><span class="p">())</span>
+        <span class="n">queries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__type</span><span class="p">())</span>
+        <span class="n">queries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__view</span><span class="p">())</span>
+        <span class="n">queries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__insert_trigger</span><span class="p">())</span>
+        <span class="n">queries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__update_trigger</span><span class="p">())</span>
+        <span class="n">queries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__delete_trigger</span><span class="p">())</span>
 
-        <span class="k">for</span> <span class="n">sql</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__drops</span><span class="p">(),</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">__type</span><span class="p">(),</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">__view</span><span class="p">(),</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">__insert_trigger</span><span class="p">(),</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">__update_trigger</span><span class="p">(),</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">__delete_trigger</span><span class="p">()]:</span>
+        <span class="k">for</span> <span class="n">sql</span> <span class="ow">in</span> <span class="n">queries</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">success</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*** Failing:</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">***&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sql</span><span class="p">))</span>
                 <span class="k">raise</span> <span class="n">VariableError</span><span class="p">(</span><span class="s2">&quot;An error in a SQL variable is probable. &quot;</span>
                                     <span class="s2">&quot;Check the variables in the SQL code &quot;</span>
@@ -305,12 +316,12 @@
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_joins</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">alias</span><span class="p">,</span> <span class="n">table_def</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joins</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">Join</span><span class="p">(</span><span class="n">pg_service</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pg_service</span><span class="p">,</span>
-                     <span class="n">parent_table</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{s}</span><span class="s1">.</span><span class="si">{t}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">master_schema</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">master_table</span><span class="p">),</span>
-                     <span class="n">child_table</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{s}</span><span class="s1">.</span><span class="si">{t}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">table_def</span><span class="p">[</span><span class="s1">&#39;table_schema&#39;</span><span class="p">],</span> <span class="n">t</span><span class="o">=</span><span class="n">table_def</span><span class="p">[</span><span class="s1">&#39;table_name&#39;</span><span class="p">]),</span>
-                     <span class="n">view_name</span><span class="o">=</span><span class="s1">&#39;vw_</span><span class="si">{a}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">alias</span><span class="p">)</span>
-                     <span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
-        <span class="k">return</span> <span class="kc">True</span></div>
+                <span class="n">success</span> <span class="o">&amp;=</span> <span class="n">SingleInheritance</span><span class="p">(</span><span class="n">pg_service</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pg_service</span><span class="p">,</span>
+                                             <span class="n">parent_table</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{s}</span><span class="s1">.</span><span class="si">{t}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">master_schema</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">master_table</span><span class="p">),</span>
+                                             <span class="n">child_table</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{s}</span><span class="s1">.</span><span class="si">{t}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">table_def</span><span class="p">[</span><span class="s1">&#39;table_schema&#39;</span><span class="p">],</span> <span class="n">t</span><span class="o">=</span><span class="n">table_def</span><span class="p">[</span><span class="s1">&#39;table_name&#39;</span><span class="p">]),</span>
+                                             <span class="n">view_name</span><span class="o">=</span><span class="s1">&#39;vw_</span><span class="si">{a}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">alias</span><span class="p">)</span>
+                                             <span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">success</span></div>
 
     <span class="k">def</span> <span class="nf">__drops</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;DROP VIEW IF EXISTS </span><span class="si">{vs}</span><span class="s2">.</span><span class="si">{vn}</span><span class="s2">;&quot;</span> \

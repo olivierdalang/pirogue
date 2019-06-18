@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pirogue.utils" href="pirogue.utils.html" />
-    <link rel="prev" title="pirogue.Join" href="pirogue.Join.html" /> 
+    <link rel="prev" title="pirogue.SimpleJoins" href="pirogue.SimpleJoins.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -81,8 +81,9 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="pirogue.Merge.html">pirogue.Merge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pirogue.Join.html">pirogue.Join</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pirogue.SingleInheritance.html">pirogue.SingleInheritance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pirogue.MultipleInheritance.html">pirogue.MultipleInheritance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pirogue.SimpleJoins.html">pirogue.SimpleJoins</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">pirogue.information_schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pirogue.utils.html">pirogue.utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pirogue.exceptions.html">pirogue.exceptions</a></li>
@@ -153,19 +154,19 @@
   <div class="section" id="module-pirogue.information_schema">
 <span id="pirogue-information-schema"></span><h1>pirogue.information_schema<a class="headerlink" href="#module-pirogue.information_schema" title="Permalink to this headline">¶</a></h1>
 <p class="rubric">Functions</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pirogue.information_schema.columns" title="pirogue.information_schema.columns"><code class="xref py py-obj docutils literal notranslate"><span class="pre">columns</span></code></a>(pg_cur, table_schema, table_name, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pirogue.information_schema.columns" title="pirogue.information_schema.columns"><code class="xref py py-obj docutils literal notranslate"><span class="pre">columns</span></code></a>(pg_cur, table_schema, table_name[, …])</p></td>
 <td><p>Returns the list of columns of a table</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#pirogue.information_schema.default_value" title="pirogue.information_schema.default_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_value</span></code></a>(pg_cur, table_schema, …)</p></td>
 <td><p>Returns the default value of the column</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pirogue.information_schema.geometry_type" title="pirogue.information_schema.geometry_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geometry_type</span></code></a>(pg_cur, table_schema, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pirogue.information_schema.geometry_type" title="pirogue.information_schema.geometry_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geometry_type</span></code></a>(pg_cur, table_schema, table_name)</p></td>
 <td><p>Returns the geometry type of a column as a tuple (type, srid)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#pirogue.information_schema.primary_key" title="pirogue.information_schema.primary_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">primary_key</span></code></a>(pg_cur, schema_name, table_name)</p></td>
@@ -178,7 +179,7 @@
 </table>
 <dl class="function">
 <dt id="pirogue.information_schema.columns">
-<code class="descclassname">pirogue.information_schema.</code><code class="descname">columns</code><span class="sig-paren">(</span><em>pg_cur: psycopg2.extensions.cursor</em>, <em>table_schema: str</em>, <em>table_name: str</em>, <em>table_type: str = 'table'</em>, <em>remove_pkey: bool = False</em>, <em>skip_columns: list = []</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="../_modules/pirogue/information_schema.html#columns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.information_schema.columns" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pirogue.information_schema.</code><code class="sig-name descname">columns</code><span class="sig-paren">(</span><em class="sig-param">pg_cur: psycopg2.extensions.cursor</em>, <em class="sig-param">table_schema: str</em>, <em class="sig-param">table_name: str</em>, <em class="sig-param">table_type: str = 'table'</em>, <em class="sig-param">remove_pkey: bool = False</em>, <em class="sig-param">skip_columns: list = []</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="../_modules/pirogue/information_schema.html#columns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.information_schema.columns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the list of columns of a table</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -196,7 +197,7 @@
 
 <dl class="function">
 <dt id="pirogue.information_schema.default_value">
-<code class="descclassname">pirogue.information_schema.</code><code class="descname">default_value</code><span class="sig-paren">(</span><em>pg_cur: psycopg2.extensions.cursor</em>, <em>table_schema: str</em>, <em>table_name: str</em>, <em>column: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/pirogue/information_schema.html#default_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.information_schema.default_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pirogue.information_schema.</code><code class="sig-name descname">default_value</code><span class="sig-paren">(</span><em class="sig-param">pg_cur: psycopg2.extensions.cursor</em>, <em class="sig-param">table_schema: str</em>, <em class="sig-param">table_name: str</em>, <em class="sig-param">column: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/pirogue/information_schema.html#default_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.information_schema.default_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the default value of the column</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -212,7 +213,7 @@
 
 <dl class="function">
 <dt id="pirogue.information_schema.geometry_type">
-<code class="descclassname">pirogue.information_schema.</code><code class="descname">geometry_type</code><span class="sig-paren">(</span><em>pg_cur: psycopg2.extensions.cursor</em>, <em>table_schema: str</em>, <em>table_name: str</em>, <em>column: str = 'geometry') -&gt; (&lt;class 'str'&gt;</em>, <em>&lt;class 'int'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/information_schema.html#geometry_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.information_schema.geometry_type" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pirogue.information_schema.</code><code class="sig-name descname">geometry_type</code><span class="sig-paren">(</span><em class="sig-param">pg_cur: psycopg2.extensions.cursor</em>, <em class="sig-param">table_schema: str</em>, <em class="sig-param">table_name: str</em>, <em class="sig-param">column: str = 'geometry') -&gt; (&lt;class 'str'&gt;</em>, <em class="sig-param">&lt;class 'int'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/information_schema.html#geometry_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.information_schema.geometry_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the geometry type of a column as a tuple (type, srid)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -228,7 +229,7 @@
 
 <dl class="function">
 <dt id="pirogue.information_schema.primary_key">
-<code class="descclassname">pirogue.information_schema.</code><code class="descname">primary_key</code><span class="sig-paren">(</span><em>pg_cur: psycopg2.extensions.cursor</em>, <em>schema_name: str</em>, <em>table_name: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/pirogue/information_schema.html#primary_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.information_schema.primary_key" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pirogue.information_schema.</code><code class="sig-name descname">primary_key</code><span class="sig-paren">(</span><em class="sig-param">pg_cur: psycopg2.extensions.cursor</em>, <em class="sig-param">schema_name: str</em>, <em class="sig-param">table_name: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/pirogue/information_schema.html#primary_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.information_schema.primary_key" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the primary of a table</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -243,7 +244,7 @@
 
 <dl class="function">
 <dt id="pirogue.information_schema.reference_columns">
-<code class="descclassname">pirogue.information_schema.</code><code class="descname">reference_columns</code><span class="sig-paren">(</span><em>pg_cur: psycopg2.extensions.cursor</em>, <em>table_schema: str</em>, <em>table_name: str</em>, <em>foreign_table_schema: str</em>, <em>foreign_table_name: str) -&gt; (&lt;class 'str'&gt;</em>, <em>&lt;class 'str'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/information_schema.html#reference_columns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.information_schema.reference_columns" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pirogue.information_schema.</code><code class="sig-name descname">reference_columns</code><span class="sig-paren">(</span><em class="sig-param">pg_cur: psycopg2.extensions.cursor</em>, <em class="sig-param">table_schema: str</em>, <em class="sig-param">table_name: str</em>, <em class="sig-param">foreign_table_schema: str</em>, <em class="sig-param">foreign_table_name: str) -&gt; (&lt;class 'str'&gt;</em>, <em class="sig-param">&lt;class 'str'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pirogue/information_schema.html#reference_columns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pirogue.information_schema.reference_columns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the columns use in a reference constraint</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -271,7 +272,7 @@
         <a href="pirogue.utils.html" class="btn btn-neutral float-right" title="pirogue.utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pirogue.Join.html" class="btn btn-neutral float-left" title="pirogue.Join" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pirogue.SimpleJoins.html" class="btn btn-neutral float-left" title="pirogue.SimpleJoins" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

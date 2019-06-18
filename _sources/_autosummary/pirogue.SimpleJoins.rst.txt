@@ -1,9 +1,9 @@
-pirogue.Merge
-=============
+pirogue.SimpleJoins
+===================
 
 .. currentmodule:: pirogue
 
-.. autoclass:: Merge
+.. autoclass:: SimpleJoins
 
    
    .. automethod:: __init__
@@ -13,8 +13,8 @@ pirogue.Merge
 
    .. autosummary::
    
-      ~Merge.__init__
-      ~Merge.create
+      ~SimpleJoins.__init__
+      ~SimpleJoins.create
    
    
 
