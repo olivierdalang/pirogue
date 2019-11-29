@@ -154,7 +154,7 @@
 <span class="kn">import</span> <span class="nn">psycopg2</span>
 <span class="kn">import</span> <span class="nn">psycopg2.extras</span>
 
-<span class="kn">from</span> <span class="nn">pirogue.utils</span> <span class="kn">import</span> <span class="n">table_parts</span><span class="p">,</span> <span class="n">select_columns</span><span class="p">,</span> <span class="n">insert_command</span><span class="p">,</span> <span class="n">update_command</span>
+<span class="kn">from</span> <span class="nn">pirogue.utils</span> <span class="kn">import</span> <span class="n">table_parts</span><span class="p">,</span> <span class="n">select_columns</span><span class="p">,</span> <span class="n">insert_command</span><span class="p">,</span> <span class="n">update_command</span><span class="p">,</span> <span class="n">default_value</span>
 <span class="kn">from</span> <span class="nn">pirogue.information_schema</span> <span class="kn">import</span> <span class="n">reference_columns</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">geometry_type</span>
 <span class="kn">from</span> <span class="nn">pirogue.exceptions</span> <span class="kn">import</span> <span class="n">TableHasNoPrimaryKey</span><span class="p">,</span> <span class="n">VariableError</span><span class="p">,</span> <span class="n">InvalidDefinition</span>
 <span class="kn">from</span> <span class="nn">pirogue.single_inheritance</span> <span class="kn">import</span> <span class="n">SingleInheritance</span>
@@ -206,7 +206,8 @@
                            <span class="s1">&#39;insert_trigger&#39;</span><span class="p">,</span> <span class="s1">&#39;update_trigger&#39;</span><span class="p">,</span>
                            <span class="s1">&#39;allow_type_change&#39;</span><span class="p">,</span> <span class="s1">&#39;allow_parent_only&#39;</span><span class="p">,</span>
                            <span class="s1">&#39;additional_columns&#39;</span><span class="p">,</span> <span class="s1">&#39;additional_joins&#39;</span><span class="p">,</span>
-                           <span class="s1">&#39;merge_columns&#39;</span><span class="p">,</span> <span class="s1">&#39;merge_geometry_columns&#39;</span><span class="p">):</span>
+                           <span class="s1">&#39;merge_columns&#39;</span><span class="p">,</span> <span class="s1">&#39;merge_geometry_columns&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;pkey_default_value&#39;</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="n">InvalidDefinition</span><span class="p">(</span><span class="s1">&#39;key </span><span class="si">{k}</span><span class="s1"> is not a valid&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">key</span><span class="p">))</span>
         <span class="c1"># check joins validity</span>
         <span class="k">for</span> <span class="n">alias</span><span class="p">,</span> <span class="n">table_def</span> <span class="ow">in</span> <span class="n">definition</span><span class="p">[</span><span class="s1">&#39;joins&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -228,6 +229,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">master_skip_colums</span> <span class="o">=</span> <span class="n">definition</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;skip_columns&#39;</span><span class="p">,</span> <span class="p">[])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">master_prefix</span> <span class="o">=</span> <span class="n">definition</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;prefix&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">master_remap_columns</span> <span class="o">=</span> <span class="n">definition</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;remap_columns&#39;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pkey_default_value</span> <span class="o">=</span> <span class="n">definition</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pkey_default_value&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
         <span class="c1"># global options:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">view_schema</span> <span class="o">=</span> <span class="n">definition</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;view_schema&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">master_schema</span><span class="p">)</span>
@@ -293,8 +295,11 @@
         <span class="n">queries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__insert_trigger</span><span class="p">())</span>
         <span class="n">queries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__update_trigger</span><span class="p">())</span>
         <span class="n">queries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__delete_trigger</span><span class="p">())</span>
+        <span class="n">queries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__extras</span><span class="p">())</span>
 
         <span class="k">for</span> <span class="n">sql</span> <span class="ow">in</span> <span class="n">queries</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">sql</span><span class="p">:</span>
+                <span class="k">continue</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">)</span>
@@ -610,6 +615,16 @@
            <span class="n">tn</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">master_table</span><span class="p">,</span>
            <span class="n">mpk</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">master_pkey</span><span class="p">,</span>
            <span class="n">vs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">view_schema</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sql</span>
+
+    <span class="k">def</span> <span class="nf">__extras</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pkey_default_value</span><span class="p">:</span>
+            <span class="n">sql</span> <span class="o">+=</span> <span class="s2">&quot;ALTER VIEW </span><span class="si">{vs}</span><span class="s2">.</span><span class="si">{vn}</span><span class="s2"> ALTER </span><span class="si">{master_pkey}</span><span class="s2"> SET DEFAULT </span><span class="si">{dv}</span><span class="s2">;&quot;</span>\
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">view_schema</span><span class="p">,</span>
+                        <span class="n">vn</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">view_name</span><span class="p">,</span>
+                        <span class="n">master_pkey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">master_pkey</span><span class="p">,</span>
+                        <span class="n">dv</span><span class="o">=</span><span class="n">default_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">master_schema</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">master_table</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">master_pkey</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">sql</span></div>
 </pre></div>
 
