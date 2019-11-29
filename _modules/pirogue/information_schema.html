@@ -149,8 +149,8 @@
             
   <h1>Source code for pirogue.information_schema</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">pirogue.exceptions</span> <span class="k">import</span> <span class="n">TableHasNoPrimaryKey</span><span class="p">,</span> <span class="n">NoReferenceFound</span><span class="p">,</span> <span class="n">InvalidSkipColumns</span>
-<span class="kn">from</span> <span class="nn">psycopg2.extensions</span> <span class="k">import</span> <span class="n">cursor</span>
+<span class="kn">from</span> <span class="nn">pirogue.exceptions</span> <span class="kn">import</span> <span class="n">TableHasNoPrimaryKey</span><span class="p">,</span> <span class="n">NoReferenceFound</span><span class="p">,</span> <span class="n">InvalidSkipColumns</span>
+<span class="kn">from</span> <span class="nn">psycopg2.extensions</span> <span class="kn">import</span> <span class="n">cursor</span>
 
 
 <div class="viewcode-block" id="primary_key"><a class="viewcode-back" href="../../_autosummary/pirogue.information_schema.html#pirogue.information_schema.primary_key">[docs]</a><span class="k">def</span> <span class="nf">primary_key</span><span class="p">(</span><span class="n">pg_cur</span><span class="p">:</span> <span class="n">cursor</span><span class="p">,</span> <span class="n">schema_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>

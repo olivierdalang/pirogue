@@ -149,10 +149,10 @@
             
   <h1>Source code for pirogue.utils</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">psycopg2.extensions</span> <span class="k">import</span> <span class="n">cursor</span>
+<span class="kn">from</span> <span class="nn">psycopg2.extensions</span> <span class="kn">import</span> <span class="n">cursor</span>
 
-<span class="kn">from</span> <span class="nn">pirogue.exceptions</span> <span class="k">import</span> <span class="n">InvalidColumn</span>
-<span class="kn">from</span> <span class="nn">pirogue.information_schema</span> <span class="k">import</span> <span class="n">columns</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">,</span> <span class="n">default_value</span>
+<span class="kn">from</span> <span class="nn">pirogue.exceptions</span> <span class="kn">import</span> <span class="n">InvalidColumn</span>
+<span class="kn">from</span> <span class="nn">pirogue.information_schema</span> <span class="kn">import</span> <span class="n">columns</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">,</span> <span class="n">default_value</span>
 
 
 <div class="viewcode-block" id="table_parts"><a class="viewcode-back" href="../../_autosummary/pirogue.utils.html#pirogue.utils.table_parts">[docs]</a><span class="k">def</span> <span class="nf">table_parts</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
